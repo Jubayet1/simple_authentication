@@ -5,6 +5,7 @@ import google from '../Assets/Images/Google.png'
 import facebook from '../Assets/Images/Facebook.png'
 import github from '../Assets/Images/GitHub.png'
 import auth from "../../firebase.init"
+import { signInWithGoogle } from "../../firebase.init"
 
 const SignUp = () => {
 
@@ -16,16 +17,13 @@ const SignUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
             // Signed in 
-                const user = userCredential.user;
-                console.log(user);
+                // const user = userCredential.user;
                 // ...
             })
             .catch((error) => {
-                const errorMessage = error.message;
-                console.log(errorMessage);
+                // const errorMessage = error.message;
                 // ..
   });
-        console.log(email, password)
     };
 
     return (
@@ -71,7 +69,9 @@ const SignUp = () => {
                     <div className="flex items-center justify-between mb-2">
                         <button 
                             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-around" 
-                            type="button">
+                            type="button"
+                            onClick={signInWithGoogle}
+                            >
                             <p>Continue With Google</p>
                             <img 
                                 src={google} 

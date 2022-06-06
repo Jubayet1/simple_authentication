@@ -14,13 +14,11 @@ const LogIn = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
-                const user = userCredential.user;
-                console.log(user)
+                // const user = userCredential.user;
                 // ...
             })
             .catch((error) => {
-                const errorMessage = error.message;
-                console.log(errorMessage)
+                // const errorMessage = error.message;
   });
     };
     
