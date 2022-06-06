@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import auth from "../../firebase.init"
+
 
 const LogIn = () => {
 
@@ -8,8 +11,17 @@ const LogIn = () => {
 
     const handleSubmission = event => {
         event.preventDefault();
-        setEmail(event.target.email.value)
-        setPassword(event.target.password.value)
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log(user)
+                // ...
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage)
+  });
     };
     
     return (
@@ -28,7 +40,9 @@ const LogIn = () => {
                             id="email" 
                             type="email"
                             name="email" 
-                            placeholder="your email"/>
+                            placeholder="your email"
+                            onChange={(event)=>setEmail(event.target.value)}
+                            />
                     </div>
                     <div className="mb-1">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
@@ -39,7 +53,9 @@ const LogIn = () => {
                             id="password" 
                             type="password"
                             name="password" 
-                            placeholder="enter password"/>
+                            placeholder="enter password"
+                            onChange={(event)=>setPassword(event.target.value)}
+                            />
                     </div>
                     <div className="mb-4">
                         <small><Link to="/" className="text-teal-300"> reset password</Link></small>
