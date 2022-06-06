@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-// import app from '../../firebase.init'
+import { createUserWithEmailAndPassword } from "firebase/auth"
 import google from '../Assets/Images/Google.png'
 import facebook from '../Assets/Images/Facebook.png'
 import github from '../Assets/Images/GitHub.png'
+import auth from "../../firebase.init"
 
 const SignUp = () => {
 
@@ -13,8 +13,18 @@ const SignUp = () => {
 
     const handleSubmission = event => {
         event.preventDefault();
-        // setEmail(event.target.email.value)
-        // setPassword(event.target.password.value)
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+            // Signed in 
+                const user = userCredential.user;
+                console.log(user);
+                // ...
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+                // ..
+  });
         console.log(email, password)
     };
 
