@@ -5,7 +5,7 @@ import google from '../Assets/Images/Google.png'
 import facebook from '../Assets/Images/Facebook.png'
 import github from '../Assets/Images/GitHub.png'
 import auth from "../../firebase.init"
-import { signInWithGoogle } from "../../firebase.init"
+import { signInWithGoogle, signInWithFB, signInWithGitHub } from "../../firebase.init"
 
 const SignUp = () => {
 
@@ -83,7 +83,9 @@ const SignUp = () => {
                     <div className="flex items-center justify-between mb-2">
                         <button 
                             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-around" 
-                            type="button">
+                            type="button"
+                            onClick={signInWithFB}
+                            >
                             <p>Continue With Facebook</p>
                             <img 
                                 src={facebook} 
@@ -95,7 +97,9 @@ const SignUp = () => {
                     <div className="flex items-center justify-between">
                         <button 
                             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-around" 
-                            type="button">
+                            type="button"
+                            onClick={signInWithGitHub}
+                            >
                             <p>Continue With GitHub</p>
                             <img 
                                 src={github}

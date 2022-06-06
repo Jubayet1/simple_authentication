@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, GithubAuthProvider  } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,14 +20,36 @@ const auth = getAuth(app);
 
 export default auth;
 
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
+const fbProvider = new FacebookAuthProvider();
+const gitHubProvider = new GithubAuthProvider ();
 
 export const signInWithGoogle = () => {
-  signInWithPopup(auth, provider)
+  signInWithPopup(auth, googleProvider)
   .then((result) => {
     console.log(result);
     // ...
   }).catch((error) => {
+    console.log(error);
+  });
+};
+
+export const signInWithFB = () => {
+  signInWithPopup(auth, fbProvider)
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+};
+
+export const signInWithGitHub = () => {
+  signInWithPopup(auth, gitHubProvider)
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
     console.log(error);
   });
 };
