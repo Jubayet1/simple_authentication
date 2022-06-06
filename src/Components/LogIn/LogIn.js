@@ -56,9 +56,6 @@ const LogIn = () => {
                             />
                     </div>
                     <div className="mb-4">
-                        <small><Link to="/" className="text-teal-300"> reset password</Link></small>
-                    </div>
-                    <div className="mb-4">
                         <small>Dont have account <Link to="/signup" className="text-teal-300"> Create Acoount</Link></small>
                     </div>
                     <div className="flex items-center justify-between">

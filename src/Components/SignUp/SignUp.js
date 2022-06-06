@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword,  } from "firebase/auth"
 import google from '../Assets/Images/Google.png'
-import facebook from '../Assets/Images/Facebook.png'
 import github from '../Assets/Images/GitHub.png'
 import auth from "../../firebase.init"
-import { signInWithGoogle, signInWithFB, signInWithGitHub } from "../../firebase.init"
+import { signInWithGoogle, signInWithGitHub } from "../../firebase.init"
 
 const SignUp = () => {
 
@@ -15,7 +14,7 @@ const SignUp = () => {
     const handleSubmission = event => {
         event.preventDefault();
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
+            .then((user) => {
             // Signed in 
                 // const user = userCredential.user;
                 // ...
@@ -23,12 +22,14 @@ const SignUp = () => {
             .catch((error) => {
                 // const errorMessage = error.message;
                 // ..
-  });
+            });
+
+
     };
 
     return (
-        <div>
-            <div className="w-full max-w-xs mx-auto my-2">
+        <div className="mt-12">
+            <div className="w-full max-w-xs mx-auto my-2 mt-12">
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmission}>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
@@ -75,20 +76,6 @@ const SignUp = () => {
                             <p>Continue With Google</p>
                             <img 
                                 src={google} 
-                                alt="" 
-                                className="w-8"
-                                />
-                        </button>
-                    </div>
-                    <div className="flex items-center justify-between mb-2">
-                        <button 
-                            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-around" 
-                            type="button"
-                            onClick={signInWithFB}
-                            >
-                            <p>Continue With Facebook</p>
-                            <img 
-                                src={facebook} 
                                 alt="" 
                                 className="w-8"
                                 />
